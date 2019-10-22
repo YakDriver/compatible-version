@@ -22,9 +22,7 @@ before_cache:
   - rm -f $HOME/.cache/pip/log/debug.log
 install:
   - pip install -r requirements/pip.txt
-  - pip install -r requirements/ci.txt
   - pip install -r requirements/test.txt
-  - pipenv shell
   - pip install --editable .
 script:
   - pytest
@@ -34,9 +32,7 @@ jobs:
       python: 3.6
       install:
         - pip install -r requirements/pip.txt
-        - pip install -r requirements/ci.txt
         - pip install -r requirements/lint.txt
-        - pipenv shell
         - pip install --editable .
       script:
         - pylint compatibleversion
