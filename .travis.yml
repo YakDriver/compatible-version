@@ -44,24 +44,15 @@ jobs:
       env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
       before_install:
         - choco install python --version 3.7.4
-        - python -m pip install -r requirements/ci.txt
-        - virtualenv $HOME/venv
-        - source $HOME/venv/Scripts/activate
       install:
         - python -m pip install -r requirements/pip.txt
         - python -m pip install -r requirements/test.txt
         - pip install --editable .
-        - pip install --editable tests/gbtestapp
     - stage: test
       os: osx
       osx_image: xcode10.1
       language: sh
       python: 3.7
-      # Perform the manual steps on osx to install python3 and activate venv
-      before_install:
-        - python -m pip install -r requirements/ci.txt
-        - virtualenv $HOME/venv -p python3
-        - source $HOME/venv/bin/activate
       cache:
         directories:
           - $HOME/Library/Caches/Homebrew
