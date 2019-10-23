@@ -53,6 +53,10 @@ jobs:
       osx_image: xcode10.1
       language: sh
       python: 3.7
+      before_install:
+        - python -m pip install -r requirements/mac.txt
+        - virtualenv $HOME/venv -p python3
+        - source $HOME/venv/bin/activate      
       cache:
         directories:
           - $HOME/Library/Caches/Homebrew
