@@ -48,21 +48,6 @@ jobs:
         - python -m pip install -r requirements/pip.txt
         - python -m pip install -r requirements/test.txt
         - pip install --editable .
-    - stage: test
-      os: osx
-      osx_image: xcode10.1
-      language: sh
-      python: 3.7
-      before_install:
-        - python -m pip install -r requirements/mac.txt
-        - virtualenv $HOME/venv -p python3
-        - source $HOME/venv/bin/activate      
-      cache:
-        directories:
-          - $HOME/Library/Caches/Homebrew
-          - /usr/local/Homebrew/Library/Homebrew
-          - /usr/local/Homebrew/Library/Taps
-          - $HOME/.cache/pip
     - stage: deploy
       if: branch = env(RELEASE_BRANCH) AND type != pull_request
       python: 3.6
