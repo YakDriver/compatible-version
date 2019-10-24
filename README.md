@@ -1,8 +1,29 @@
+[![License](https://img.shields.io/github/license/YakDriver/compatibleversion.svg)](./LICENSE)
+[![Travis CI Build Status](https://travis-ci.org/YakDriver/compatibleversion.svg?branch=develop)](https://travis-ci.org/YakDriver/compatibleversion)
+[![Latest Version](https://img.shields.io/pypi/v/compatibleversion.svg?label=version)](https://pypi.python.org/pypi/compatibleversion)
+
 # compatibleversion
 
 *compatibleversion* takes two parameters, a version and a specifier (i.e., version constraints), and returns a Boolean value indicating compatibility.
 
 **NOTE:** *compatibleversion* wraps [packaging](https://packaging.pypa.io/en/latest/) in order to simplify and test its use. Versions and specifiers provided to *compatibleversion* must conform to [PEP 440](https://www.python.org/dev/peps/pep-0440/) as required by *packaging*.
+
+## install
+
+```console
+$ pip install compatibleversion
+```
+
+## usage
+
+Use *compatibleversion* in Python code:
+
+```python
+from compatibleversion import check_version
+
+check_version('1.3.0', '> 1.2, < 3.3')  # true
+check_version('2.1', '~= 2.2')          # false
+```
 
 ## version parameter
 
