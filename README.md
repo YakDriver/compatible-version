@@ -1,5 +1,5 @@
 [![License](https://img.shields.io/github/license/YakDriver/compatibleversion.svg)](./LICENSE)
-[![Travis CI Build Status](https://travis-ci.org/YakDriver/compatibleversion.svg?branch=develop)](https://travis-ci.org/YakDriver/compatibleversion)
+[![Travis CI Build Status](https://travis-ci.org/YakDriver/compatibleversion.svg)](https://travis-ci.org/YakDriver/compatibleversion)
 [![Latest Version](https://img.shields.io/pypi/v/compatibleversion.svg?label=version)](https://pypi.python.org/pypi/compatibleversion)
 
 # compatibleversion

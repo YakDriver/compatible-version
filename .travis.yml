@@ -86,7 +86,7 @@ jobs:
           draft: false
           skip_cleanup: true
           api_key:
-            secure: EAzZCo6RRcdheI4/uEz6RiAqySWUp77g6sOirtbV3kPoJC0HA5ws1+qzWkMNKghQMo6y1eBxwU/tv6CkjXGygZKrs/ZpgfjTtd0Mqe12HN8+0JX9MV/UHpzh3M10QthqflpV+WsG0iAyZvlkJnvtXIFHSjTQMedB7EyPdicZniXXBdGbPoJWU2PBbmA0TI5U6ksP+DtXrvNWP9zpQq06mqO0KPH4AhfB2A638fOJWBbDhWH9BukzIJgh6qvpx6601LGX5uGEe+FdEj74Y/UZOZwjCkVzFDX/Cm+6wS9d2WISjAXO5wISltY3swff0kavwywKrezcRATdHh7lJKu2l+kWa9hf1gAIyJHIf/0qBOIT/TqfVfpKWZ3/VIY4/+OnTIWdUhHGFIliDOduxMPgMzYfp49wU6acIwl67I3FBT9j/SGG6Zsk15Gb9d0nzJvzc7gvwGyba7uPZ807/nYFP4wBXWc14maAbe3sgpL8sCrr6pJby3TNdH97RQpAayIPF9Y2AA5x/MbjVmRQTi93WR5Y5Ov0jdcxFMLgSqKhY93g3CUROiM7HV34vlcYCJUxLiUKCeG7pTIDL6+n660S4Ky933KH2Gf6yoGxVdHMRB58y2aneqdCKoIO0ReqBp8Su6jspF2XcRmYp6hkRMCfo5Msc/lluglVESoTf28wBKU=
+            secure: "kyYnz7InDJU8azI3iCl57RqqJpNbbe7Z51jp8mFFgG5NU6HSEwQLkwVJMOyJMxn0jVPQ710usJsYGTxpf++UUc9W/38lWqBlEvav8YN9OsrBukD6e1iClRZ5L1mXEGx8g05d+Fop0hhMbzmP6Bd6iSQSuqq4ThRk205Fimqg20VhR1xr17xVXj+0V4JZ4v9tjw6LnbU5yRvf56/MZ2iucQOnVPJz/ut7TyHrbHio4KJnK+eKIUhC541QCAuVglVNmhqYEby73gSXoqFrPOaitDEuQ/OCJSx0+p6ehmSvrZPHDZKE5kbBrm5HndIuUQAblsOMXO/4P+fe33FFeN7W/82Yt2wLfNT+Fgvf5URbj76xVHsaHcGvGsSZGUqYBa0ybd8wBsCTlbltN+BGhOCvdUbneA1nZTqKfj0Nnsw3K+yfe+Ho/nvPXpXlKP7PUuRA1U9SYT22jq6zEepluPAKf6N0V+scS+k3C7AfagKa5+/po1jm5tE47ZIhBvFrgj1RLhnlKmHxYs7GvCKqaE1oUo0rp6p2ZviXvf6oNMP95Gd4zTZt2C5dA20AS99YKEmtbOEuydeBBJNGdICnykzC8VfmYXDLeOmJuFNgEN3OnOF6iw6DawdAHtfbHI3TR7Iy3iTtiQ7mUQnpG8j9NvQo1Vx6FfLfhZVqTYVoV/kUHAA="
           on:
             branch: $RELEASE_BRANCH
             condition: '"$PRIOR_VERSION" != "$RELEASE_VERSION"'
@@ -100,7 +100,7 @@ jobs:
       deploy:
           - provider: pypi
             distributions: sdist bdist_wheel
-            user: plus3it
+            user: __token__
             password:
               secure: "OYObFqSvTo3jFXqmC966ByYVGxDWd/5asvqWzmlG89urWUXWMXNwKuBjjsqWSRMrScqo8pcZDPGeN5kvAV8vkhPp75FjnmAZDjmUktS083JPxXfi7xoVA+RAMIMyhCTH0dFj5rakKsnZ3jVjvM4/Bjw9H9ZiR/YyEhQac3kXh67wE+GQmK5hZD5PQktkXFtjvAYq+gmSjzo6oFk21qBrexhx44y+mvKtg4YPxQsZsvqa7mq6dh3afnb/2evM3ZW8gGrOpMFv6Ycdj5fMBDVavBm6ioI2f3TH/kEMKOEGRpvzo2KJy2KcpcdDrmc71lBLdQohl5IR6hSuNxGs0qQm3prJfKM7zjnOxAOibGGqwstIrjyvPLzEeWNnSnhupP5YvkuT5hCMf+/k7YYe+QtF3MTY8C8BHGtE8fX4K9UFdtwb7CgrOQPeRpE6+JomoFGQdF2EnW/QQtfe24oE6XZ69bYKJLlLPlVGi5TX6NnFenjljmDOdj1AqJK07rZr9hxTYKNLghuOKv++UEGuncXjvgpa3iSeP72Q9yE6CmHHoZ/BRnaOQqtNg+56WC4pWlwVa5o3Bf5zRwUAZK0F6ecFo6qLztG2ESs3JSWgmp8YqOn8IxAO4eQJlu2Sx6UAjj1ceIKkrdRyZ/4auwCAkaoYQTgBwS8MiwB2xJzFy1tLaZA="
             skip_upload_docs: true
