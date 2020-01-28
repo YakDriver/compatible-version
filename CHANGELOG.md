@@ -1,5 +1,16 @@
 ## Changelog
 
+### 0.1.3
+
+**Commit Delta**: [Change from 0.1.2 release](https://github.com/plus3it/watchmaker/compare/0.1.2...0.1.3)
+
+**Released**: 2020.01.28
+
+**Summary**:
+
+*   Update dependencies
+*   Update Python compatibility versions in PyPI/wheel package
+
 ### 0.1.2
 
 **Commit Delta**: [Change from 0.1.1 release](https://github.com/plus3it/watchmaker/compare/0.1.1...0.1.2)
