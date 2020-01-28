@@ -1,0 +1,21 @@
+name: Cut release automatically
+
+on:
+  schedule:
+    - cron:  '0 9 1 * *'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Count commits since last release
+      env:
+        commits_since: ${{ git log $(git describe --tags --abbrev=0)..HEAD --oneline | wc -l }}
+      run: echo "$commits_since"
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
