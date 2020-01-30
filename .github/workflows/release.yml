@@ -2,7 +2,7 @@ name: Cut release automatically
 
 on:
   schedule:
-    - cron: "15 1 * * 5"
+    - cron: "30 11 * * 4"
 
 jobs:
   check-changes:
@@ -44,9 +44,21 @@ jobs:
           pip install -r $GITHUB_WORKSPACE/requirements/release.txt
           newver=$(bumpversion --dry-run --list patch | grep new_version= | sed -r s,"^.*=",,)
           echo "New version will be ${newver}"
-          git checkout -b $newver
+          git checkout -b autorelease/$newver
           bumpversion patch
           git add .
           git commit -m "Release $newver"
-          git push
+          git push --set-upstream origin autorelease/$newver
           git status
+
+  open-pr:
+    needs: bump-version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: pull-request-action
+        uses: vsoch/pull-request-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_PREFIX: "autorelease/"
+          PULL_REQUEST_BRANCH: "master"
