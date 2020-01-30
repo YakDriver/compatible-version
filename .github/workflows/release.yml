@@ -35,6 +35,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: master
       - uses: actions/setup-python@v1
         with:
           python-version: '3.x'
@@ -44,4 +46,7 @@ jobs:
           echo "New version will be ${newver}"
           git checkout -b $newver
           bumpversion patch
+          git add .
+          git commit -m "Release $newver"
+          git push
           git status
