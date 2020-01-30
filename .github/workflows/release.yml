@@ -2,25 +2,30 @@ name: Cut release automatically
 
 on:
   schedule:
-    - cron: "*/20 * * * *"
+    - cron: "15 1 * * 5"
 
 jobs:
   check-changes:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: master
       - name: Check commits since last release
         id: count-commits
         run: |
-          date
-          git fetch --all
-          commits_since=$(git log $(git describe --tags --abbrev=0)..HEAD --oneline | wc -l)
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          git describe --tags --abbrev=0
+          commits_since=$(git log $(git describe --tags --always --abbrev=0)..HEAD --oneline | wc -l)
           echo "Commits since last release: $commits_since"
-          if [ "${commits_since}" == "0" ]
-            then
-              echo "No release needed!"
-              exit 1
+          if [ "${commits_since}" == "0" ]; then
+            echo "No release needed"
+            exit 1
+          else
+            echo "Release needed"
           fi
 
   bump-version:
@@ -28,6 +33,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: This bumps the version
-        run: echo This is the script part
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.x'
+      - run: |
+          pip install -r $GITHUB_WORKSPACE/requirements/release.txt
+          newver=$(bumpversion --dry-run --list patch | grep new_version= | sed -r s,"^.*=",,)
+          echo "New version will be ${newver}"
+          git checkout -b $newver
+          bumpversion patch
+          git status
