@@ -1,7 +1,8 @@
 name: Create pull requests if branch
 
 on:
-  push:
+  schedule:
+    - cron: "25 20 * * 5"
 
 jobs:
   open-pr:

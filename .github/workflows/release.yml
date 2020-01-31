@@ -2,7 +2,7 @@ name: Cut release automatically
 
 on:
   schedule:
-    - cron: "1 20 * * 5"
+    - cron: "20 20 * * 5"
 
 jobs:
   check-changes:
