@@ -2,7 +2,7 @@ name: Create pull requests if branch
 
 on:
   schedule:
-    - cron: "25 20 * * 5"
+    - cron: "25 21 * * 6"
 
 jobs:
   open-pr:

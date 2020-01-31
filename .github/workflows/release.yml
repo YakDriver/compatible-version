@@ -2,7 +2,7 @@ name: Cut release automatically
 
 on:
   schedule:
-    - cron: "20 20 * * 5"
+    - cron: "25 21 * * 5"
 
 jobs:
   check-changes:
@@ -44,16 +44,28 @@ jobs:
           pip install -r $GITHUB_WORKSPACE/requirements/release.txt
           newver=$(bumpversion --dry-run --list patch | grep new_version= | sed -r s,"^.*=",,)
           echo "New version will be ${newver}"
-          git config --global user.email "${EMAIL}"
-          git config --global user.name "$(dirname ${REPO_SLUG})"
-          git remote set-url origin "https://$(dirname ${REPO_SLUG}):${GITHUB_TOKEN}@github.com/${REPO_SLUG}.git"
-          git checkout -b autorelease/$newver
+          #git config --global user.email "${EMAIL}"
+          #git config --global user.name "$(dirname ${REPO_SLUG})"
+          #git remote set-url origin "https://$(dirname ${REPO_SLUG}):${GITHUB_TOKEN}@github.com/${REPO_SLUG}.git"
+          #git checkout -b autorelease/$newver
           bumpversion patch
-          git add .
-          git commit -m "Release $newver"
-          git push --set-upstream origin autorelease/$newver
-          git status
+          export NEW_VERSION=$newver
+          #git add .
+          #git commit -m "Release $newver"
+          #git push --set-upstream origin autorelease/$newver
+          #git status
         env:
-          EMAIL: ${{ secrets.EMAIL }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO_SLUG: ${{ github.repository }}
+          #EMAIL: ${{ secrets.EMAIL }}
+          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          #REPO_SLUG: ${{ github.repository }}
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: autorelease/${{ env.NEW_VERSION }}
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pr_number }}"
