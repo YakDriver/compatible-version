@@ -2,7 +2,7 @@ name: Cut release automatically
 
 on:
   schedule:
-    - cron: "25 21 * * 5"
+    - cron: "26 21 * * 5"
 
 jobs:
   check-changes:
@@ -55,7 +55,7 @@ jobs:
           #git push --set-upstream origin autorelease/$newver
           #git status
         env:
-          #EMAIL: ${{ secrets.EMAIL }}
+          EMAIL: ${{ secrets.EMAIL }}
           #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           #REPO_SLUG: ${{ github.repository }}
 
