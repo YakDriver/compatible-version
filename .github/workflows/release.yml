@@ -57,15 +57,3 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_SLUG: ${{ github.repository }}
-
-  open-pr:
-    needs: bump-version
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: pull-request-action
-        uses: vsoch/pull-request-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_PREFIX: "autorelease/"
-          PULL_REQUEST_BRANCH: "master"
