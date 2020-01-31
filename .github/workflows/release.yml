@@ -1,8 +1,9 @@
 name: Cut release automatically
 
 on:
+  push:
   schedule:
-    - cron: "26 21 * * 5"
+    - cron: "20 22 * * 5"
 
 jobs:
   check-changes:
@@ -49,15 +50,13 @@ jobs:
           #git remote set-url origin "https://$(dirname ${REPO_SLUG}):${GITHUB_TOKEN}@github.com/${REPO_SLUG}.git"
           #git checkout -b autorelease/$newver
           bumpversion patch
-          export NEW_VERSION=$newver
+          #export NEW_VERSION=$newver
+          echo "::set-env name=NEW_VERSION::$newver"
           #git add .
           #git commit -m "Release $newver"
           #git push --set-upstream origin autorelease/$newver
           #git status
-        env:
-          EMAIL: ${{ secrets.EMAIL }}
-          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          #REPO_SLUG: ${{ github.repository }}
+
 
       - name: Create Pull Request
         id: cpr
