@@ -2,11 +2,10 @@ name: Create pull requests if branch
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/8 * * * *"
 
 jobs:
   open-pr:
-    needs: bump-version
     runs-on: ubuntu-latest
 
     steps:
