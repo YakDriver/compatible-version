@@ -2,7 +2,7 @@ name: Cut release automatically
 
 on:
   schedule:
-    - cron: "40 23 * * 4"
+    - cron: "35 2 * * 5"
 
 jobs:
   check-changes:
@@ -44,12 +44,18 @@ jobs:
           pip install -r $GITHUB_WORKSPACE/requirements/release.txt
           newver=$(bumpversion --dry-run --list patch | grep new_version= | sed -r s,"^.*=",,)
           echo "New version will be ${newver}"
+          git config user.email "${EMAIL}"
+          git remote set-url origin "https://$(dirname ${REPO_SLUG}):${GITHUB_TOKEN}@github.com/${REPO_SLUG}.git"
           git checkout -b autorelease/$newver
           bumpversion patch
           git add .
           git commit -m "Release $newver"
           git push --set-upstream origin autorelease/$newver
           git status
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_SLUG: ${{ github.repository }}
 
   open-pr:
     needs: bump-version
