@@ -53,7 +53,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: autorelease/${{ env.NEW_VERSION }}
-          committer: ${{ secrets.COMMITTER }}
           commit-message: Release version ${{ env.NEW_VERSION }}
           title: Release version ${{ env.NEW_VERSION }}
           body: This is an automated release that updates dependencies.
