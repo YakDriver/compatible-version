@@ -61,6 +61,8 @@ def test_versions():
     assert check_version('1.0b2.post345.dev456', '==1.0b2.post345.dev456')
     assert check_version('1.0b2.post345', '==1.0b2.post345')
     assert check_version('1.0rc1.dev456', '==1.0rc1.dev456')
+    assert check_version('0.17.4', '>=0.17.0.dev0')
+    assert check_version('0.17.4.dev0', '>=0.17.0.dev0')
 
 
 def test_specifiers():
