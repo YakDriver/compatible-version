@@ -20,7 +20,4 @@ def check_version(version, specifier):
     version_obj = Version(version)
     specifier_obj = SpecifierSet(specifier)
 
-    if list(specifier_obj.filter([version_obj])):
-        return True
-
-    return False
+    return specifier_obj.contains(version_obj)
