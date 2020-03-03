@@ -86,7 +86,6 @@ def test_specifiers():
     assert check_version('1.4.5.9', '~= 1.4.5.0')
     assert not check_version('1.4.6', '~= 1.4.5.0')
 
-    assert check_version('1.0rc1.dev456', '>= 1.*')
     assert check_version('1.999.1', '>= 1.*')
 
     assert check_version('2.3', '~= 2.2')
