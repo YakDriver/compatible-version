@@ -21,8 +21,14 @@ Use *compatibleversion* in Python code:
 ```python
 from compatibleversion import check_version
 
-check_version('1.3.0', '> 1.2, < 3.3')  # true
-check_version('2.1', '~= 2.2')          # false
+check_version('1.3.0', '> 1.2, < 3.3')          # True
+check_version('2.1', '~= 2.2')                  # False
+
+check_version('1.1.dev0', '>=1.0')              # True
+check_version('1.1.dev0', '>=1.0', False)       # False, not allowing pre/dev-final comparison
+
+check_version('1.1.dev0', '>=1.0.dev0')         # True, dev-dev compare
+check_version('1.1.dev0', '>=1.0.dev0', False)  # True, doesn't affect since dev-dev
 ```
 
 ## version parameter
@@ -57,7 +63,7 @@ The version parameter must conform to [PEP 440](https://www.python.org/dev/peps/
 
 ## specifier parameter
 
-The version specifier parameter must conform to [PEP 440](https://www.python.org/dev/peps/pep-0440/). The specifier consists of one or more version clauses separated by commas. 
+The version specifier parameter must conform to [PEP 440](https://www.python.org/dev/peps/pep-0440/). The specifier consists of one or more version clauses separated by commas.
 
 For example, these are valid version specifiers (the last two are approximately equivalent):
 

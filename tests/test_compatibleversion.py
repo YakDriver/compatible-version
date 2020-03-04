@@ -62,6 +62,23 @@ def test_versions():
     assert check_version('1.0b2.post345', '==1.0b2.post345')
     assert check_version('1.0rc1.dev456', '==1.0rc1.dev456')
 
+    assert check_version('1.1.dev456', '>=1.0')
+    assert check_version('1.dev0', '>=0')
+    assert check_version('99.9.9.dev0', '>=20.1')
+
+    assert not check_version('1.1.dev456', '>=1.0', False)  # don't allow pre
+    assert not check_version('1.dev0', '>=0', False)  # don't allow pre
+    assert not check_version('99.9.9.dev0', '>=20.1', False)  # don't allow pre
+
+    assert not check_version('1.0.dev456', '>=1.0')
+    assert not check_version('1.1.dev456', '>=1.0', False)
+    assert not check_version('1.0.dev456', '>=1.0', False)
+
+    assert check_version('1.1.dev0', '>=1.0')
+    assert not check_version('1.1.dev0', '>=1.0', False)
+    assert check_version('1.1.dev0', '>=1.0.dev0')
+    assert check_version('1.1.dev0', '>=1.0.dev0', False)
+
 
 def test_specifiers():
     """Tests for a variety of specifier types."""
