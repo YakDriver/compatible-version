@@ -8,7 +8,7 @@ from packaging.specifiers import SpecifierSet
 from packaging.version import Version
 
 
-__version__ = "0.2.15"
+__version__ = "0.2.16"
 
 
 def check_version(version, specifier, allow_pre=True):
